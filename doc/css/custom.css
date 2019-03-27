@@ -1,0 +1,82 @@
+h1 {
+    color: #4E6272!important;
+    font-family: Roboto;
+}
+
+#synopsis {
+    top: 30% !important;
+}	  
+      
+.dotted-link {
+    color: #444!important;
+    text-decoration: none;
+    border-bottom: 1px dotted #999;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.copyright-link {
+    color: #3E4349!important;
+    text-decoration: none;
+    border-bottom: none;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.doc {
+    padding-left: 0em;
+}
+
+table {
+    border-collapse: separate !important;
+    table-layout: auto!important;
+}
+
+tr > .doc {
+    line-height: 1.2 !important;
+    vertical-align: middle;
+}
+
+tr > .doc > p {
+    display: table-cell; 
+    vertical-align: middle;
+}
+
+tr > .src {
+    display: table-cell !important; 
+    vertical-align: middle !important;
+    line-height: 0.8 !important;
+    font-size: 13px;    
+}
+
+.src > .link {
+    float: right !important;
+    font-size: 85% !important;
+    color: #919191!important;
+}
+
+.src > .selflink {
+    float: right !important;
+    border-left: 1px solid #919191 !important;
+    margin: 0 0em 0 0.5em!important;
+    padding: 0 0.5em 0.2em!important;
+    font-size: 85% !important;
+    color: #919191!important;
+}   
+
+p > img {
+    width:100%!important;
+}
+
+a.reference:hover {
+    border-bottom: 1px solid #000000;
+    padding-bottom:5px;
+}
+
+sourcelink {
+    border-bottom: 1px dotted #004B6B !important;
+}
+
+#content {
+    padding: 0px !important;
+}

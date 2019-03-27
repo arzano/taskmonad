@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-pragma">{-# LANGUAGE ScopedTypeVariables, TypeSynonymInstances, FlexibleInstances #-}</span><span>
+</span><a name="line-2"></a><span class="hs-comment">-----------------------------------------------------------------------------</span><span>
+</span><a name="line-3"></a><span class="hs-comment">-- |</span><span>
+</span><a name="line-4"></a><span class="hs-comment">-- Module      :  TaskMonad.Prompt</span><span>
+</span><a name="line-5"></a><span class="hs-comment">-- Copyright   :  Max Magorsch &lt;max@magorsch.de&gt;</span><span>
+</span><a name="line-6"></a><span class="hs-comment">-- License     :  BSD-style (see LICENSE)</span><span>
+</span><a name="line-7"></a><span class="hs-comment">--</span><span>
+</span><a name="line-8"></a><span class="hs-comment">-- Maintainer  :  Max Magorsch &lt;max@magorsch.de&gt;</span><span>
+</span><a name="line-9"></a><span class="hs-comment">-- Stability   :  unstable</span><span>
+</span><a name="line-10"></a><span class="hs-comment">-- Portability :  unportable</span><span>
+</span><a name="line-11"></a><span class="hs-comment">--</span><span>
+</span><a name="line-12"></a><span class="hs-comment">-- TaskMonad.Prompt provides wrappers around [XMonad.Prompt.Input]</span><span>
+</span><a name="line-13"></a><span class="hs-comment">-- (https://hackage.haskell.org/package/xmonad-contrib/docs/XMonad-Prompt-Input.html)</span><span>
+</span><a name="line-14"></a><span class="hs-comment">-- for usage with taskwarrior</span><span>
+</span><a name="line-15"></a><span class="hs-comment">--</span><span>
+</span><a name="line-16"></a><span class="hs-comment">-----------------------------------------------------------------------------</span><span>
+</span><a name="line-17"></a><span>
+</span><a name="line-18"></a><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">TaskMonad.Prompt</span><span>
+</span><a name="line-19"></a><span>  </span><span class="hs-special">(</span><span> </span><a href="TaskMonad.Prompt.html#taskwarriorPrompt"><span class="hs-identifier hs-var">taskwarriorPrompt</span></a><span>
+</span><a name="line-20"></a><span>  </span><span class="hs-special">,</span><span>
+</span><a name="line-21"></a><span>       </span><span class="hs-comment">-- * Screenshots</span><span>
+</span><a name="line-22"></a><span>       </span><span class="hs-comment">-- $screenshots</span><span>
+</span><a name="line-23"></a><span>    </span><a href="TaskMonad.Prompt.html#customPrompt"><span class="hs-identifier hs-var">customPrompt</span></a><span>
+</span><a name="line-24"></a><span>  </span><span class="hs-special">)</span><span>
+</span><a name="line-25"></a><span class="hs-keyword">where</span><span>
+</span><a name="line-26"></a><span>
+</span><a name="line-27"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Data.List</span><span>
+</span><a name="line-28"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Data.Maybe</span><span>
+</span><a name="line-29"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">System.Process</span><span>
+</span><a name="line-30"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">System.IO</span><span>
+</span><a name="line-31"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Control.Monad</span><span>                  </span><span class="hs-special">(</span><span> </span><span class="hs-identifier hs-var">filterM</span><span> </span><span class="hs-special">)</span><span>
+</span><a name="line-32"></a><span>
+</span><a name="line-33"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">XMonad</span><span>                  </span><span class="hs-keyword">hiding</span><span> </span><span class="hs-special">(</span><span> </span><span class="hs-identifier hs-var">liftX</span><span> </span><span class="hs-special">)</span><span>
+</span><a name="line-34"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">XMonad.Util.Font</span><span>
+</span><a name="line-35"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">XMonad.StackSet</span><span>               </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">W</span><span>
+</span><a name="line-36"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">XMonad.Layout.Decoration</span><span>
+</span><a name="line-37"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">XMonad.Prompt</span><span>
+</span><a name="line-38"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">XMonad.Prompt.Input</span><span>
+</span><a name="line-39"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">XMonad.Util.Image</span><span>
+</span><a name="line-40"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">XMonad.Util.NamedWindows</span><span>
+</span><a name="line-41"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">XMonad.Util.XUtils</span><span>
+</span><a name="line-42"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">XMonad.Util.NamedScratchpad</span><span>
+</span><a name="line-43"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">XMonad.Util.Run</span><span>
+</span><a name="line-44"></a><span>
+</span><a name="line-45"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><a href="GridSelect.Extras.html"><span class="hs-identifier">GridSelect.Extras</span></a><span>
+</span><a name="line-46"></a><span>
+</span><a name="line-47"></a><span class="hs-keyword">import</span><span>           </span><a href="TaskMonad.ScratchPad.html"><span class="hs-identifier">TaskMonad.ScratchPad</span></a><span>
+</span><a name="line-48"></a><span class="hs-keyword">import</span><span>           </span><a href="TaskMonad.Utils.html"><span class="hs-identifier">TaskMonad.Utils</span></a><span>
+</span><a name="line-49"></a><span class="hs-keyword">import</span><span>           </span><a href="TaskMonad.GridSelect.html"><span class="hs-identifier">TaskMonad.GridSelect</span></a><span>           </span><span class="hs-special">(</span><span> </span><a href="TaskMonad.GridSelect.html#togglePriority"><span class="hs-identifier hs-var">togglePriority</span></a><span>
+</span><a name="line-50"></a><span>                                                </span><span class="hs-special">,</span><span> </span><a href="TaskMonad.GridSelect.html#defaultTWGSExtraConfig"><span class="hs-identifier hs-var">defaultTWGSExtraConfig</span></a><span>
+</span><a name="line-51"></a><span>                                                </span><span class="hs-special">)</span><span>
+</span><a name="line-52"></a><span>
+</span><a name="line-53"></a><span>
+</span><a name="line-54"></a><span class="hs-comment">-- $screenshots</span><span>
+</span><a name="line-55"></a><span class="hs-comment">--</span><span>
+</span><a name="line-56"></a><span class="hs-comment">-- TaskMonad.Prompt in action:</span><span>
+</span><a name="line-57"></a><span class="hs-comment">--</span><span>
+</span><a name="line-58"></a><span class="hs-comment">-- &lt;&lt;./taskmonad-prompt.png&gt;&gt;</span><span>
+</span><a name="line-59"></a><span>
+</span><a name="line-60"></a><span>
+</span><a name="line-61"></a><span class="hs-comment">-- | A wrapper around [XMonad.Prompt.Input]</span><span>
+</span><a name="line-62"></a><span class="hs-comment">-- (https://hackage.haskell.org/package/xmonad-contrib/docs/XMonad-Prompt-Input.html)</span><span>
+</span><a name="line-63"></a><span class="hs-comment">-- using a custom 'XPconfig'</span><span>
+</span><a name="line-64"></a><span class="hs-identifier">customPrompt</span><span>
+</span><a name="line-65"></a><span>  </span><span class="hs-glyph">::</span><span> </span><span class="hs-identifier hs-type">String</span><span> </span><span class="hs-comment">-- ^ title that will be displayed in the prompt </span><span>
+</span><a name="line-66"></a><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="hs-identifier hs-type">String</span><span class="hs-special">]</span><span> </span><span class="hs-comment">-- ^ completion list </span><span>
+</span><a name="line-67"></a><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">String</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-identifier hs-type">X</span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span class="hs-special">)</span><span> </span><span class="hs-comment">-- ^ action that takes the input of the prompt and returns and X ()</span><span>
+</span><a name="line-68"></a><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-identifier hs-type">X</span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span> </span><span class="hs-comment">-- ^ the action that shows the prompt</span><span>
+</span><a name="line-69"></a><a name="customPrompt"><a href="TaskMonad.Prompt.html#customPrompt"><span class="hs-identifier">customPrompt</span></a></a><span> </span><a name="local-6989586621679062277"><a href="#local-6989586621679062277"><span class="hs-identifier">name</span></a></a><span> </span><a name="local-6989586621679062278"><a href="#local-6989586621679062278"><span class="hs-identifier">completeList</span></a></a><span> </span><a name="local-6989586621679062279"><a href="#local-6989586621679062279"><span class="hs-identifier">action</span></a></a><span> </span><span class="hs-glyph">=</span><span>
+</span><a name="line-70"></a><span>  </span><span class="hs-identifier hs-var">inputPromptWithCompl</span><span> </span><a href="#local-6989586621679062280"><span class="hs-identifier hs-var">myXPConfig</span></a><span> </span><a href="#local-6989586621679062277"><span class="hs-identifier hs-var">name</span></a><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-var">mkComplFunFromList</span><span> </span><a href="#local-6989586621679062278"><span class="hs-identifier hs-var">completeList</span></a><span class="hs-special">)</span><span>
+</span><a name="line-71"></a><span>    </span><span class="hs-operator hs-var">?+</span><span> </span><a href="#local-6989586621679062279"><span class="hs-identifier hs-var">action</span></a><span>
+</span><a name="line-72"></a><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-73"></a><span>  </span><a name="local-6989586621679062280"><a href="#local-6989586621679062280"><span class="hs-identifier">myXPConfig</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-identifier hs-var">def</span><span> </span><span class="hs-special">{</span><span> </span><span class="hs-identifier">position</span><span>          </span><span class="hs-glyph">=</span><span> </span><span class="hs-identifier hs-var">CenteredAt</span><span> </span><span class="hs-number">0.5</span><span> </span><span class="hs-number">0.4</span><span>
+</span><a name="line-74"></a><span>                   </span><span class="hs-special">,</span><span> </span><span class="hs-identifier">alwaysHighlight</span><span>   </span><span class="hs-glyph">=</span><span> </span><span class="hs-identifier hs-var">True</span><span>
+</span><a name="line-75"></a><span>                   </span><span class="hs-special">,</span><span> </span><span class="hs-identifier">height</span><span>            </span><span class="hs-glyph">=</span><span> </span><span class="hs-number">60</span><span>
+</span><a name="line-76"></a><span>                   </span><span class="hs-special">,</span><span> </span><span class="hs-identifier">promptBorderWidth</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-number">1</span><span>
+</span><a name="line-77"></a><span>                   </span><span class="hs-special">,</span><span> </span><span class="hs-identifier">font</span><span>              </span><span class="hs-glyph">=</span><span> </span><span class="hs-string">&quot;xft:Inconsolata:size=14&quot;</span><span>
+</span><a name="line-78"></a><span>                   </span><span class="hs-special">,</span><span> </span><span class="hs-identifier">borderColor</span><span>       </span><span class="hs-glyph">=</span><span> </span><span class="hs-string">&quot;#555555&quot;</span><span>
+</span><a name="line-79"></a><span>                   </span><span class="hs-special">,</span><span> </span><span class="hs-identifier">bgColor</span><span>           </span><span class="hs-glyph">=</span><span> </span><span class="hs-string">&quot;#111111&quot;</span><span>
+</span><a name="line-80"></a><span>                   </span><span class="hs-special">}</span><span>
+</span><a name="line-81"></a><span>
+</span><a name="line-82"></a><span>
+</span><a name="line-83"></a><span class="hs-comment">-- | A wrapper around 'customPrompt' that can be used to execute taskwarrior</span><span>
+</span><a name="line-84"></a><span class="hs-comment">-- as well as custom commands.</span><span>
+</span><a name="line-85"></a><span class="hs-comment">--</span><span>
+</span><a name="line-86"></a><span class="hs-comment">-- You can specify a list of tuples which contain</span><span>
+</span><a name="line-87"></a><span class="hs-comment">-- custom actions as well as conditions for the custom actions, like this:</span><span>
+</span><a name="line-88"></a><span class="hs-comment">--</span><span>
+</span><a name="line-89"></a><span class="hs-comment">-- &gt; taskwarriorPrompt [(\x -&gt; x == &quot;processInput&quot;, processInput)]</span><span>
+</span><a name="line-90"></a><span class="hs-comment">--</span><span>
+</span><a name="line-91"></a><span class="hs-comment">-- However, if none of the specified actions is true, a default action will be executed.</span><span>
+</span><a name="line-92"></a><span class="hs-comment">-- The default action shows taskwarrior reports in a scratchpad and executes all the other commands silently.  </span><span>
+</span><a name="line-93"></a><span class="hs-identifier">taskwarriorPrompt</span><span>
+</span><a name="line-94"></a><span>  </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="hs-special">(</span><span class="hs-identifier hs-type">String</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-identifier hs-type">Bool</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">X</span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-comment">-- ^ a list of tuples which contain a condition for an action as well as the action</span><span>
+</span><a name="line-95"></a><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-identifier hs-type">X</span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span> </span><span class="hs-comment">-- ^ the resulting TaskWarrior prompt</span><span>
+</span><a name="line-96"></a><a name="taskwarriorPrompt"><a href="TaskMonad.Prompt.html#taskwarriorPrompt"><span class="hs-identifier">taskwarriorPrompt</span></a></a><span> </span><a name="local-6989586621679062281"><a href="#local-6989586621679062281"><span class="hs-identifier">possibleActions</span></a></a><span> </span><span class="hs-glyph">=</span><span>
+</span><a name="line-97"></a><span>  </span><a href="TaskMonad.Prompt.html#customPrompt"><span class="hs-identifier hs-var">customPrompt</span></a><span> </span><span class="hs-string">&quot;task&quot;</span><span> </span><a href="TaskMonad.Utils.html#defaulttwreports"><span class="hs-identifier hs-var">defaulttwreports</span></a><span> </span><span class="hs-special">(</span><a href="TaskMonad.Prompt.html#possiblePromptAction"><span class="hs-identifier hs-var">possiblePromptAction</span></a><span> </span><a href="#local-6989586621679062281"><span class="hs-identifier hs-var">possibleActions</span></a><span class="hs-special">)</span><span>
+</span><a name="line-98"></a><span>
+</span><a name="line-99"></a><span>
+</span><a name="line-100"></a><span class="hs-comment">-- | Recursively goes through a list of conditional actions. If a condition is fulfilled, the</span><span>
+</span><a name="line-101"></a><span class="hs-comment">-- related action will be executed, otherwise the next condition in the list will be evaluated.</span><span>
+</span><a name="line-102"></a><span class="hs-comment">-- In case no condition is fulfilled the 'defaultTWPromptAction' will finally be executed.</span><span>
+</span><a name="line-103"></a><a name="possiblePromptAction"><a href="TaskMonad.Prompt.html#possiblePromptAction"><span class="hs-identifier">possiblePromptAction</span></a></a><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span> </span><a name="local-6989586621679062282"><a href="#local-6989586621679062282"><span class="hs-identifier">command</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="TaskMonad.Prompt.html#defaultTWPromptAction"><span class="hs-identifier hs-var">defaultTWPromptAction</span></a><span> </span><a href="#local-6989586621679062282"><span class="hs-identifier hs-var">command</span></a><span>
+</span><a name="line-104"></a><span class="hs-identifier">possiblePromptAction</span><span> </span><span class="hs-special">(</span><a name="local-6989586621679062283"><a href="#local-6989586621679062283"><span class="hs-identifier">p</span></a></a><span> </span><span class="hs-glyph">:</span><span> </span><a name="local-6989586621679062284"><a href="#local-6989586621679062284"><span class="hs-identifier">ps</span></a></a><span class="hs-special">)</span><span> </span><a name="local-6989586621679062285"><a href="#local-6989586621679062285"><span class="hs-identifier">command</span></a></a><span> </span><span class="hs-glyph">=</span><span>
+</span><a name="line-105"></a><span>  </span><span class="hs-keyword">if</span><span> </span><span class="hs-identifier hs-var">fst</span><span> </span><a href="#local-6989586621679062283"><span class="hs-identifier hs-var">p</span></a><span> </span><a href="#local-6989586621679062285"><span class="hs-identifier hs-var">command</span></a><span> </span><span class="hs-keyword">then</span><span> </span><span class="hs-identifier hs-var">snd</span><span> </span><a href="#local-6989586621679062283"><span class="hs-identifier hs-var">p</span></a><span> </span><span class="hs-keyword">else</span><span> </span><a href="TaskMonad.Prompt.html#possiblePromptAction"><span class="hs-identifier hs-var">possiblePromptAction</span></a><span> </span><a href="#local-6989586621679062284"><span class="hs-identifier hs-var">ps</span></a><span> </span><a href="#local-6989586621679062285"><span class="hs-identifier hs-var">command</span></a><span>
+</span><a name="line-106"></a><span>
+</span><a name="line-107"></a><span>
+</span><a name="line-108"></a><span class="hs-comment">-- | The default action that will be execute in the 'taskwarriorPrompt', if no other action was executed.</span><span>
+</span><a name="line-109"></a><span class="hs-identifier">defaultTWPromptAction</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-identifier hs-type">String</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-identifier hs-type">X</span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
+</span><a name="line-110"></a><a name="defaultTWPromptAction"><a href="TaskMonad.Prompt.html#defaultTWPromptAction"><span class="hs-identifier">defaultTWPromptAction</span></a></a><span> </span><a name="local-6989586621679062286"><a href="#local-6989586621679062286"><span class="hs-identifier">command</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">if</span><span> </span><a href="TaskMonad.Utils.html#isTWReport"><span class="hs-identifier hs-var">isTWReport</span></a><span> </span><a href="#local-6989586621679062286"><span class="hs-identifier hs-var">command</span></a><span>
+</span><a name="line-111"></a><span>  </span><span class="hs-keyword">then</span><span> </span><a href="TaskMonad.ScratchPad.html#twscratchpad"><span class="hs-identifier hs-var">twscratchpad</span></a><span> </span><a href="#local-6989586621679062286"><span class="hs-identifier hs-var">command</span></a><span>
+</span><a name="line-112"></a><span>  </span><span class="hs-keyword">else</span><span> </span><a href="#local-6989586621679062287"><span class="hs-identifier hs-var">twcommand</span></a><span> </span><a href="#local-6989586621679062286"><span class="hs-identifier hs-var">command</span></a><span>
+</span><a name="line-113"></a><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-114"></a><span>  </span><a name="local-6989586621679062287"><a href="#local-6989586621679062287"><span class="hs-identifier">twcommand</span></a></a><span> </span><a name="local-6989586621679062288"><a href="#local-6989586621679062288"><span class="hs-identifier">command</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-identifier hs-var">io</span><span> </span><span class="hs-special">(</span><a href="TaskMonad.Utils.html#execCommandWithOutput"><span class="hs-identifier hs-var">execCommandWithOutput</span></a><span> </span><span class="hs-string">&quot;task&quot;</span><span> </span><a href="#local-6989586621679062288"><span class="hs-identifier hs-var">command</span></a><span class="hs-special">)</span><span>
+</span><a name="line-115"></a><span>    </span><span class="hs-operator hs-var">&gt;&gt;=</span><span> </span><span class="hs-glyph">\</span><a name="local-6989586621679062289"><a href="#local-6989586621679062289"><span class="hs-identifier">bs</span></a></a><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-identifier hs-var">unsafeSpawn</span><span> </span><span class="hs-operator hs-var">$</span><span> </span><span class="hs-string">&quot;notify-send '&quot;</span><span> </span><span class="hs-operator hs-var">++</span><span> </span><a href="#local-6989586621679062289"><span class="hs-identifier hs-var">bs</span></a><span> </span><span class="hs-operator hs-var">++</span><span> </span><span class="hs-string">&quot;'&quot;</span><span>
+</span><a name="line-116"></a><span>
+</span><a name="line-117"></a></pre></body></html>

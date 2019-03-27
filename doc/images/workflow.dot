@@ -1,0 +1,48 @@
+digraph {
+ 
+     inbox[shape="box", style=rounded];
+     is_actionable[shape="diamond", label="is it actionable?" style=""];
+
+     no[shape="diamond", label="next step"];
+
+     reference[shape="box", style=rounded];
+     someday[shape="box", style=rounded];
+     trash[shape="box", style=rounded];
+
+     multiple_steps[shape="diamond", label="does it take multiple steps?"];
+     
+     project[shape="box", style=rounded];
+
+     less_2_minutes[shape="diamond", label="does it take < 2 minutes?"];
+    
+     do_it[shape="box", label="do it", style=rounded];
+
+     no2[shape="diamond", label="next step"];
+
+     calendar[shape="box", style=rounded];
+     waiting_for[shape="box", label="waiting for", style=rounded];
+     edit_task[shape="box", label="edit task" style=rounded];
+     
+ 
+     inbox -> is_actionable;
+     is_actionable -> multiple_steps[label="yes"];
+     is_actionable -> no[label="no"];
+     no -> reference;
+     no -> someday;
+     no -> trash;
+
+
+     multiple_steps -> project[label="yes"];
+     
+     multiple_steps -> less_2_minutes[label="no"];
+
+     less_2_minutes -> do_it[label="yes"];
+
+     less_2_minutes -> no2[label="no"];
+     
+     no2 -> calendar;
+     no2 -> waiting_for;
+     no2 -> edit_task;
+     
+     
+}

@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" type="image/x-icon" href="images/taskmonad.ico">
+
+    <link href="css/ocean.css" rel="stylesheet" type="text/css" title="new-ocean" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="css/lightbox.min.css" rel="stylesheet">
+    
+    <link href="css/custom.css" rel="stylesheet">
+    
+    <title>TaskMonad: xmonad + taskwarrior</title>
+  </head>
+  <body>
+    
+    
+    <a href="https://github.com/mmagorsc/taskmonad" style="position: absolute;top: 0;right: 0;border: 0;"><img width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_darkblue_121621.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+
+
+    
+<div class="container" style="padding-left:66px;padding-right:110px;padding-top:30px;">
+
+
+  <div class="row">
+
+    <div class="col-sm-3" style="width:100%;padding-right:40px;padding-left: 10px;padding-top:10px;">
+<img src="./images/taskmonad.png" style="width:100%;margin-bottom:10px;">
+
+<!-- Place this tag where you want the button to render. -->
+<div style="margin-top:10px;margin-bottom:10px;"><a class="github-button" href="https://github.com/mmagorsc/taskmonad" data-size="large" aria-label="Star ntkme/github-buttons on GitHub">Star</a>
+<a class="github-button" href="https://github.com/mmagorsc/taskmonad/releases" data-icon="octicon-cloud-download" data-size="large" aria-label="Download ntkme/github-buttons on GitHub">Download</a></div>
+
+<p style="overflow-wrap: break-word; font-family: Georgia, serif; font-size: 14px; line-height: 1.5;color: #555;">
+  Taskmonad is a collection of tools which can be used to access
+  taskwarrior from xmonad.
+</p>
+
+
+
+<h3 style="font-family: Georgia, serif;color: #444;font-size: 24px;font-weight: normal;">Page Content</h3>
+
+
+<ul style="list-style: none;margin: 10px 0;">
+  <li><a class="dotted-link" href="#g:1">Screenshot</a></li>
+  <li><a class="dotted-link" href="#g:2">Possible GridSelects</a></li>
+  <li><a class="dotted-link" href="#g:3">Configuration</a></li>
+</ul>
+
+<h3 style="margin-top:30px;font-family: Georgia, serif;color: #444;font-size: 24px;font-weight: normal;">Modules</h3>
+
+<ul style="list-style: none;margin: 10px 0;">
+  <li><a class="dotted-link" href="index.html">TaskMonad</a></li>
+  <li><a style="margin-left:20px;" class="dotted-link" href="TaskMonad-Prompt.html">TaskMonad.Prompt</a></li>
+  <li><a style="margin-left:20px;" class="dotted-link" href="TaskMonad-GridSelect.html">TaskMonad.GridSelect</a></li>
+  <li><a style="margin-left:20px;" class="dotted-link" href="TaskMonad-Scratchpad.html">TaskMonad.Scratchpad</a></li>
+  <li><a style="margin-left:20px;" class="dotted-link" href="TaskMonad-Utils.html">TaskMonad.Utils</a></li>
+  <li><a class="dotted-link" href="GridSelect-Extras.html">GridSelect.Extras</a></li>
+</ul>
+
+<h3 style="margin-top:30px;font-family: Georgia, serif;color: #444;font-size: 24px;font-weight: normal;">Information</h3>
+
+<ul style="list-style: none;margin: 10px 0;">
+  <li><a class="copyright-link"><strong>Copyright</strong></a></li>  
+  <li><a style="margin-left:20px;" class="copyright-link">Max Magorsch</a></li>
+  <li><a style="margin-left:20px;" class="copyright-link">&lt;max@magorsch.de&gt;</a></li>
+  <li><a class="copyright-link"><strong>License</strong></a></li>
+  <li><a style="margin-left:20px;" class="copyright-link">BSD-style</a></li>
+  <li><a style="margin-left:20px;" class="copyright-link">(see License)</a></li>
+  <li><a class="copyright-link"><strong>Maintainer</strong></a></li>
+  <li><a style="margin-left:20px;" class="copyright-link">Max Magorsch</a></li>
+  <li><a style="margin-left:20px;" class="copyright-link">&lt;max@magorsch.de&gt;</a></li>
+</ul>
+
+</div>
+
+    <div class="col-sm-9">
+      <h1>TaskMonad.GridSelect</h1>
+
+      <p style="font-family: Georgia, serif; font-size: 17px;margin-top:17px;">Release v1.0.0. (<a class="reference internal" href="src/TaskMonad.GridSelect.html"><span class=" std std-ref">Source</span></a>)</p>
+
+      <a class="reference" href="https://pypi.org/project/requests/"><img alt="https://img.shields.io/pypi/l/requests.svg" src="https://img.shields.io/badge/license-BSD-lightgrey.svg"></a>
+
+            <a class="reference" href="https://pypi.org/project/requests/"><img alt="https://img.shields.io/pypi/l/requests.svg" src="https://img.shields.io/badge/build-passing-brightgreen.svg"></a>
+
+            <a class="reference" href="https://pypi.org/project/requests/"><img alt="https://img.shields.io/pypi/l/requests.svg" src="https://img.shields.io/badge/hackage-v1.0.0-brightgreen.svg"></a>
+
+            <a class="reference" href="https://pypi.org/project/requests/"><img alt="https://img.shields.io/pypi/l/requests.svg" src="https://codecov.io/gh/requests/requests/branch/master/graphs/badge.svg?branch=master"></a>
+
+      <p style="margin-top:30px; margin-bottom:17px; font-family: Georgia, serif;font-size: 17px;color: #3E4349;"><b>TaskMonad.GridSelect</b> uses <code><a href="GridSelect.html#v:Extras" title="GridSelect">Extras</a></code> to display various information from taskwarrior.</p>
+
+
+<div id="content"><div id="synopsis"><details id="syn"><summary>Synopsis</summary><ul class="details-toggle" data-details-id="syn"><li class="src short"><a href="#v:taskSelect">taskSelect</a> :: String -&gt; X ()</li><li class="src short"><a href="#v:taskSelectWithConfig">taskSelectWithConfig</a> :: String -&gt; GSConfig (X ()) -&gt; X ()</li><li class="src short"><a href="#v:tagSelect">tagSelect</a> :: X ()</li><li class="src short"><a href="#v:tagSelectWithConfig">tagSelectWithConfig</a> :: (GSConfig (X ()), GSConfig (X ())) -&gt; X ()</li><li class="src short"><a href="#v:projectSelect">projectSelect</a> :: X ()</li><li class="src short"><a href="#v:projectSelectWithConfig">projectSelectWithConfig</a> :: (GSConfig (X ()), GSConfig (X ())) -&gt; X ()</li><li class="src short"><a href="#v:dueSelect">dueSelect</a> :: X ()</li><li class="src short"><a href="#v:dueSelectWithConfig">dueSelectWithConfig</a> :: (GSConfig (X ()), GSConfig (X ())) -&gt; X ()</li><li class="src short"><a href="#v:togglePriority">togglePriority</a> :: String -&gt; X ()</li><li class="src short"><a href="#v:togglePriorityWithConfig">togglePriorityWithConfig</a> :: <a href="GridSelect-Extras.html#t:GSConfig" title="GridSelect.Extras">GSConfig</a> (X ()) -&gt; String -&gt; X ()</li><li class="src short"><a href="#v:buildTWGSExtraConfig">buildTWGSExtraConfig</a> :: Integer -&gt; <a href="GridSelect-Extras.html#t:GSConfig" title="GridSelect.Extras">GSConfig</a> (X ())</li><li class="src short"><a href="#v:buildTWGSConfig">buildTWGSConfig</a> :: Integer -&gt; GSConfig (X ())</li><li class="src short"><a href="#v:defaultTWGSConfig">defaultTWGSConfig</a> :: GSConfig (X ())</li><li class="src short"><a href="#v:defaultTWGSExtraConfig">defaultTWGSExtraConfig</a> :: <a href="GridSelect-Extras.html#t:GSConfig" title="GridSelect.Extras">GSConfig</a> (X ())</li></ul></details></div><div id="interface"><a href="#g:1" id="g:1"><h1>Screenshot</h1></a><div class="doc"><p><code><a href="TaskMonad-GridSelect.html#v:togglePriority" title="TaskMonad.GridSelect">togglePriority</a></code> in action:</p><p>
+
+    <a href="images/taskmonad-gridselect.png" data-lightbox="example-1">
+      <img style="width:100%" src="images/taskmonad-gridselect.png" alt="Capture">
+    </a>
+    </p></div><a href="#g:2" id="g:2"><h1>Possible GridSelects</h1></a><div class="top"><p class="src"><a id="v:taskSelect" class="def">taskSelect</a> <a href="src/TaskMonad.GridSelect.html#taskSelect" class="link">Source</a> <a href="#v:taskSelect" class="selflink">#</a></p><div class="subs arguments"><p class="caption">Arguments</p><table><tbody><tr><td class="src">:: String</td><td class="doc"><p>a filter to be applied, please refer to <a href="https://taskwarrior.org/docs/filter.html">TaskWarrior Filter</a> for further information</p></td></tr><tr><td class="src">-&gt; X ()</td><td class="doc"><p>the gridselect displaying all filtered tasks</p></td></tr></tbody></table></div><div class="doc"><p>A wrapper around <code><a href="TaskMonad-GridSelect.html#v:taskSelectWithConfig" title="TaskMonad.GridSelect">taskSelectWithConfig</a></code> using the default GSConfig</p></div></div><div class="top"><p class="src"><a id="v:taskSelectWithConfig" class="def">taskSelectWithConfig</a> <a href="src/TaskMonad.GridSelect.html#taskSelectWithConfig" class="link">Source</a> <a href="#v:taskSelectWithConfig" class="selflink">#</a></p><div class="subs arguments"><p class="caption">Arguments</p><table><tbody><tr><td class="src">:: String</td><td class="doc"><p>a filter to be applied, please refer to <a href="https://taskwarrior.org/docs/filter.html">TaskWarrior Filter</a> for further information</p></td></tr><tr><td class="src">-&gt; GSConfig (X ())</td><td class="doc"><p>the GridSelect config to be used</p></td></tr><tr><td class="src">-&gt; X ()</td><td class="doc"><p>the gridselect displaying all filtered tasks</p></td></tr></tbody></table></div><div class="doc"><p>A GridSelect displaying a filtered list of all taskwarrior tasks</p></div></div><div class="top"><p class="src"><a id="v:tagSelect" class="def">tagSelect</a> :: X () <a href="src/TaskMonad.GridSelect.html#tagSelect" class="link">Source</a> <a href="#v:tagSelect" class="selflink">#</a></p><div class="doc"><p>A wrapper around <code><a href="TaskMonad-GridSelect.html#v:tagSelectWithConfig" title="TaskMonad.GridSelect">tagSelectWithConfig</a></code> using the default GSConfig</p></div></div><div class="top"><p class="src"><a id="v:tagSelectWithConfig" class="def">tagSelectWithConfig</a> <a href="src/TaskMonad.GridSelect.html#tagSelectWithConfig" class="link">Source</a> <a href="#v:tagSelectWithConfig" class="selflink">#</a></p><div class="subs arguments"><p class="caption">Arguments</p><table><tbody><tr><td class="src">:: (GSConfig (X ()), GSConfig (X ()))</td><td class="doc"><p>A tuple containing two GSConfigs. The first one is used to configure the gridselect displaying the list of tags. The second one is used to configure the gridselect displaying the resulting fitlered list of tasks. </p></td></tr><tr><td class="src">-&gt; X ()</td><td class="doc"><p>a gridSelect displaying a list of the tags of all pending taskwarrior tasks</p></td></tr></tbody></table></div><div class="doc"><p>A GridSelect displaying a list of the tags of all pending taskwarrior tasks. After a tag has been selected, a second gridselect showing a filtered list of taskwarrior tasks that have the selected tag will be displayed. </p></div></div><div class="top"><p class="src"><a id="v:projectSelect" class="def">projectSelect</a> :: X () <a href="src/TaskMonad.GridSelect.html#projectSelect" class="link">Source</a> <a href="#v:projectSelect" class="selflink">#</a></p><div class="doc"><p>A wrapper around <code><a href="TaskMonad-GridSelect.html#v:projectSelectWithConfig" title="TaskMonad.GridSelect">projectSelectWithConfig</a></code> using the default GSConfig</p></div></div><div class="top"><p class="src"><a id="v:projectSelectWithConfig" class="def">projectSelectWithConfig</a> <a href="src/TaskMonad.GridSelect.html#projectSelectWithConfig" class="link">Source</a> <a href="#v:projectSelectWithConfig" class="selflink">#</a></p><div class="subs arguments"><p class="caption">Arguments</p><table><tbody><tr><td class="src">:: (GSConfig (X ()), GSConfig (X ()))</td><td class="doc"><p>A tuple containing two GSConfigs. The first one is used to configure the gridselect displaying the list of pending projects. The second one is used to configure the gridselect displaying the resulting filtered list of tasks. </p></td></tr><tr><td class="src">-&gt; X ()</td><td class="doc"><p>a GridSelect displaying a list of all pending projects</p></td></tr></tbody></table></div><div class="doc"><p>A GridSelect displaying a list of all pending projects. After a project has been selected, a second gridselect showing a filtered list of taskwarrior tasks that belong to the selected project  will be displayed.</p></div></div><div class="top"><p class="src"><a id="v:dueSelect" class="def">dueSelect</a> :: X () <a href="src/TaskMonad.GridSelect.html#dueSelect" class="link">Source</a> <a href="#v:dueSelect" class="selflink">#</a></p><div class="doc"><p>A wrapper around <code><a href="TaskMonad-GridSelect.html#v:dueSelectWithConfig" title="TaskMonad.GridSelect">dueSelectWithConfig</a></code> using the default GSConfig</p></div></div><div class="top"><p class="src"><a id="v:dueSelectWithConfig" class="def">dueSelectWithConfig</a> <a href="src/TaskMonad.GridSelect.html#dueSelectWithConfig" class="link">Source</a> <a href="#v:dueSelectWithConfig" class="selflink">#</a></p><div class="subs arguments"><p class="caption">Arguments</p><table><tbody><tr><td class="src">:: (GSConfig (X ()), GSConfig (X ()))</td><td class="doc"><p>A tuple containing two GSConfigs. The first one is used to configure the gridselect displaying the list of due dates. The second one is used to configure the gridselect displaying the resulting filtered list of tasks.</p></td></tr><tr><td class="src">-&gt; X ()</td><td class="doc"><p>a GridSelect displaying a list of all due dates</p></td></tr></tbody></table></div><div class="doc"><p>A GridSelect displaying a list of due dates. After a due date has been selected, a second gridselect showing a filtered list of taskwarrior tasks will be displayed.</p></div></div><div class="top"><p class="src"><a id="v:togglePriority" class="def">togglePriority</a> <a href="src/TaskMonad.GridSelect.html#togglePriority" class="link">Source</a> <a href="#v:togglePriority" class="selflink">#</a></p><div class="subs arguments"><p class="caption">Arguments</p><table><tbody><tr><td class="src">:: String</td><td class="doc"><p>the priority that should be toggled</p></td></tr><tr><td class="src">-&gt; X ()</td><td class="doc"><p>the resulting gridselect</p></td></tr></tbody></table></div><div class="doc"><p>A wrapper around <code><a href="TaskMonad-GridSelect.html#v:togglePriorityWithConfig" title="TaskMonad.GridSelect">togglePriorityWithConfig</a></code> using the default GridSelect.Extras.GSConfig</p></div></div><div class="top"><p class="src"><a id="v:togglePriorityWithConfig" class="def">togglePriorityWithConfig</a> <a href="src/TaskMonad.GridSelect.html#togglePriorityWithConfig" class="link">Source</a> <a href="#v:togglePriorityWithConfig" class="selflink">#</a></p><div class="subs arguments"><p class="caption">Arguments</p><table><tbody><tr><td class="src">:: <a href="GridSelect-Extras.html#t:GSConfig" title="GridSelect.Extras">GSConfig</a> (X ())</td><td class="doc"><p>a GridSelect.Extras.GSConfig used for the gridselect</p></td></tr><tr><td class="src">-&gt; String</td><td class="doc"><p>the priority that should be toggled</p></td></tr><tr><td class="src">-&gt; X ()</td><td class="doc"><p>the resulting gridselect</p></td></tr></tbody></table></div><div class="doc"><p>A gridselect showing all pending tasks. The tasks are colored according to their priority. Selecting a task toggles its priority. </p></div></div><a href="#g:3" id="g:3"><h1>Configuration</h1></a><div class="top"><p class="src"><a id="v:buildTWGSExtraConfig" class="def">buildTWGSExtraConfig</a> <a href="src/TaskMonad.GridSelect.html#buildTWGSExtraConfig" class="link">Source</a> <a href="#v:buildTWGSExtraConfig" class="selflink">#</a></p><div class="subs arguments"><p class="caption">Arguments</p><table><tbody><tr><td class="src">:: Integer</td><td class="doc"><p>the cellwidth</p></td></tr><tr><td class="src">-&gt; <a href="GridSelect-Extras.html#t:GSConfig" title="GridSelect.Extras">GSConfig</a> (X ())</td><td class="doc"><p>the resulting GridSelect.Extra.GSConfig</p></td></tr></tbody></table></div><div class="doc"><p>Method used to build a GridSelect.Extra.GSConfig by specifying a custom cellwidth</p></div></div><div class="top"><p class="src"><a id="v:buildTWGSConfig" class="def">buildTWGSConfig</a> <a href="src/TaskMonad.GridSelect.html#buildTWGSConfig" class="link">Source</a> <a href="#v:buildTWGSConfig" class="selflink">#</a></p><div class="subs arguments"><p class="caption">Arguments</p><table><tbody><tr><td class="src">:: Integer</td><td class="doc"><p>the cellwidth</p></td></tr><tr><td class="src">-&gt; GSConfig (X ())</td><td class="doc"><p>the resulting GSConfig</p></td></tr></tbody></table></div><div class="doc"><p>Method used to build a GSConfig by specifying a custom cellwidth </p></div></div><div class="top"><p class="src"><a id="v:defaultTWGSConfig" class="def">defaultTWGSConfig</a> :: GSConfig (X ()) <a href="src/TaskMonad.GridSelect.html#defaultTWGSConfig" class="link">Source</a> <a href="#v:defaultTWGSConfig" class="selflink">#</a></p><div class="doc"><p>The default GSConfig used for taskwarrior GridSelects</p></div></div><div class="top"><p class="src"><a id="v:defaultTWGSExtraConfig" class="def">defaultTWGSExtraConfig</a> :: <a href="GridSelect-Extras.html#t:GSConfig" title="GridSelect.Extras">GSConfig</a> (X ()) <a href="src/TaskMonad.GridSelect.html#defaultTWGSExtraConfig" class="link">Source</a> <a href="#v:defaultTWGSExtraConfig" class="selflink">#</a></p><div class="doc"><p>The default GridSelect.Extra.GSConfig used for taskwarrior GridSelects</p></div></div></div></div>
+
+    </div>
+  </div>
+</div>
+    
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <!-- GitHub Buttons -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    <script src="js/lightbox-plus-jquery.min.js"></script>
+    
+  </body>
+</html>
