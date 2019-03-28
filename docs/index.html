@@ -16,8 +16,6 @@
     <title>TaskMonad: xmonad + taskwarrior</title>
   </head>
   <body>
-
-    
     
     <a href="https://github.com/mmagorsc/taskmonad" style="position: absolute;top: 0;right: 0;border: 0;"><img width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_darkblue_121621.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
 
@@ -95,7 +93,7 @@
 
       <p style="margin-top:30px; margin-bottom:17px; font-family: Georgia, serif;font-size: 17px;color: #3E4349;"><b>TaskMonad</b> is a collection of tools which can be used to access taskwarrior from xmonad.</p>
 
-<video style="width:100%;margin-bottom:50px;" controls>
+<video id="screencast" style="width:100%;margin-bottom:50px;" controls>
   <source src="./images/taskmonad-screencast.mp4">
   Your browser does not support the video tag.
 </video> 
@@ -169,6 +167,16 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
 
     <script src="js/lightbox-plus-jquery.min.js"></script>
+
+    <script>
+      $('#screencast').hover(function toggleControls() {
+	  if (this.hasAttribute("controls")) {
+              this.removeAttribute("controls")
+	  } else {
+              this.setAttribute("controls", "controls")
+	  }
+      })
+    </script>
     
   </body>
 </html>
