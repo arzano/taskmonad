@@ -28,10 +28,17 @@ source-repository head
 
 library
   exposed-modules: TaskMonad
+                   TaskMonad.GridSelect
+                   TaskMonad.Prompt
+                   TaskMonad.Utils
+                   TaskMonad.ScratchPad
+                   GridSelect.Extras
   -- other-modules:   Paths_xmonad
   build-depends:   base                  >= 4.11 && < 5
                  , X11                   >= 1.8 && < 1.10
+                 , X11-xft
                  , unix
+                 , process
                  , xmonad
                  , xmonad-contrib
   hs-source-dirs:  src
