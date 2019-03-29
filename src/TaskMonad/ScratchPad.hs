@@ -79,7 +79,7 @@ taskwarriorScratchpads =
   [NS "taskwarrior" spawnTaskwarrior findTerm manageTerm] -- and a second ]
  where
   spawnTaskwarrior =
-    "urxvt" ++ " -name scratchpad" ++ " -e tmux new -A -s tw-scratch"
+    "xterm" ++ " -name scratchpad" ++ " -e tmux new -A -s tw-scratch"
   findTerm   = appName =? "scratchpad" -- its window will be named "scratchpad" (see above)
   manageTerm = customFloating $ W.RationalRect 0.25 0 0.5 0.6 -- l t w h
 
