@@ -21,8 +21,7 @@
 
 Basically, TaskMonad provides a collection of tools which can be used to access taskwarrior from xmonad.
 
-<p align="center"><img width=95% src="https://raw.githubusercontent.com/mmagorsc/taskmonad/master/docs/images/taskmonad-screencast.gif"></p>
-
+[![Screencast](https://raw.githubusercontent.com/mmagorsc/taskmonad/master/docs/images/taskmonad-screencast.gif)](https://taskmonad.magorsch.de)
 
 ## Installation
 
@@ -84,32 +83,32 @@ Basically TaskMonad implements a few methods which can be used to follow the GTD
 
 You can easily capture tasks, ideas or notes using the `taskwarriorPrompt` like this:
 
-<p align="center"><img width=95% src="https://raw.githubusercontent.com/mmagorsc/taskmonad/master/docs/images/capture.png"></p>
+[![Capture](https://raw.githubusercontent.com/mmagorsc/taskmonad/master/docs/images/capture.png)](https://taskmonad.magorsch.de)
 
 ### Step 2 & 3: Clarify & Organize
 
 You can clarify and organize your tasks using processInbox. It implements the typical Getting Things Done workflow using GridSelects:
 
-<p align="center"><img width=85% src="https://raw.githubusercontent.com/mmagorsc/taskmonad/master/docs/images/workflow.png"></p>
+[![Clarify and Organize](https://raw.githubusercontent.com/mmagorsc/taskmonad/master/docs/images/workflow.png)](https://taskmonad.magorsch.de)
 
 
 ### Step 4: Reflect
 
 You can implement your own custom daily- and weeklyreview routines. For example you can use togglePriority to adjust the priority of tasks during the daily- / weeklyreview like this:
 
-<p align="center"><img width=95% src="https://raw.githubusercontent.com/mmagorsc/taskmonad/master/docs/images/taskmonad-gridselect.png"></p>
+[![Reflect](https://raw.githubusercontent.com/mmagorsc/taskmonad/master/docs/images/taskmonad-gridselect.png)](https://taskmonad.magorsch.de)
 
 ### Step 5: Engage
 
 To decide which task to do next, you can use a collection of gridselects. You can use tagSelect, projectSelect, dueSelect to display a gridselect to filter the tasks by tag, project or due date. However you can also display all pending tasks using taskSelect like this:
 
-<p align="center"><img width=95% src="https://raw.githubusercontent.com/mmagorsc/taskmonad/master/docs/images/engage.png"></p>
+[![Engage](https://raw.githubusercontent.com/mmagorsc/taskmonad/master/docs/images/engage.png)](https://taskmonad.magorsch.de)
 
 ### Scratchpad
 
 The taskwarrior scratchpad is used to display taskwarrior reports that have been invoked using the taskwarrior prompt. However, you can use the scratchpad at your convenience. After you have added a manage hook as described in _Installation_, you can bind a key to taskwarriorScratchpad. The Scratchpad will look like this
 
-<p align="center"><img width=95% src="https://raw.githubusercontent.com/mmagorsc/taskmonad/master/docs/images/taskmonad-scratchpad.png"></p>
+[![Scratchpad](https://raw.githubusercontent.com/mmagorsc/taskmonad/master/docs/images/taskmonad-scratchpad.png)](https://taskmonad.magorsch.de)
 
 ## Customizing 
 
