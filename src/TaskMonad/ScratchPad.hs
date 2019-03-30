@@ -65,7 +65,7 @@ import qualified GridSelect.Extras
 --
 -- TaskMonad.Scratchpad in action:
 --
--- <<./taskmonad-scratchpad.png>>
+-- <<https://raw.githubusercontent.com/mmagorsc/taskmonad/master/docs/images/taskmonad-scratchpad.png>>
 
 
 -- | Open the TaskWarrior-ScratchPad

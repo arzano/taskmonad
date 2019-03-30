@@ -67,7 +67,7 @@ import           TaskMonad.ScratchPad
 -- $screenshots
 -- 'togglePriority' in action:
 -- 
--- << ./taskmonad-gridselect.png >>
+-- << https://raw.githubusercontent.com/mmagorsc/taskmonad/master/docs/images/taskmonad-gridselect.png >>
 
 
 -- | A GridSelect displaying a filtered list of all taskwarrior tasks

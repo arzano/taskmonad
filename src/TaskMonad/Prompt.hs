@@ -55,7 +55,7 @@ import           TaskMonad.GridSelect           ( togglePriority
 --
 -- TaskMonad.Prompt in action:
 --
--- <<./taskmonad-prompt.png>>
+-- <<https://raw.githubusercontent.com/mmagorsc/taskmonad/master/docs/images/taskmonad-prompt.png>>
 
 
 -- | A wrapper around [XMonad.Prompt.Input]

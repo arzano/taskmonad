@@ -124,14 +124,14 @@ import           TaskMonad.GridSelect
 --
 -- You can easily capture tasks, ideas or notes using the 'taskwarriorPrompt' like this:
 --
--- << ./capture.png >>
+-- << https://raw.githubusercontent.com/mmagorsc/taskmonad/master/docs/images/capture.png >>
 --
 
 -- $organize
 -- You can clarify and organize your tasks using 'processInbox'.
 -- It implements the typical Getting Things Done workflow using GridSelects:
 -- 
--- << ./workflow.png >>
+-- << https://raw.githubusercontent.com/mmagorsc/taskmonad/master/docs/images/workflow.png >>
 --
 
 -- $reflect
@@ -139,7 +139,7 @@ import           TaskMonad.GridSelect
 -- For example you can use 'togglePriority' to adjust the priority of tasks
 -- during the daily- / weeklyreview like this:
 --
--- << ./taskmonad-gridselect.png >>
+-- << https://raw.githubusercontent.com/mmagorsc/taskmonad/master/docs/images/taskmonad-gridselect.png >>
 
 -- $engage
 -- To decide which task to do next, you can use a collection of gridselects.
@@ -147,7 +147,7 @@ import           TaskMonad.GridSelect
 -- to filter the tasks by tag, project or due date. However you can also display
 -- all pending tasks using 'taskSelect' like this:
 --
--- << ./engage.png >>
+-- << https://raw.githubusercontent.com/mmagorsc/taskmonad/master/docs/images/engage.png >>
 
 -- $scratchpad
 -- The taskwarrior scratchpad is used to display taskwarrior reports that
@@ -158,7 +158,7 @@ import           TaskMonad.GridSelect
 --
 -- Afterwards you can bind a key to 'taskwarriorScratchpad'. The Scratchpad will look like this
 --
--- << ./taskmonad-scratchpad.png >>
+-- << https://raw.githubusercontent.com/mmagorsc/taskmonad/master/docs/images/taskmonad-scratchpad.png >>
 
 -- $components
 -- * 'TaskMonad'

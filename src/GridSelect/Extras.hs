@@ -93,7 +93,7 @@ import           Data.Word                      ( Word8 )
 --
 -- Selecting an action:
 --
--- <<./gridselect-extras.png>>
+-- <<https://raw.githubusercontent.com/mmagorsc/taskmonad/master/docs/images/gridselect-extras.png>>
 --
 --
 --
