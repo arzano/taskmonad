@@ -7,7 +7,7 @@ synopsis:            A collection of tools which can be used to access taskwarri
 description:         TaskMonad is a collection of tools which can be used to access taskwarrior from xmonad.
 homepage:            https://taskmonad.magorsch.de
 bug-reports:         https://github.com/mmagorsc/taskmonad/issues
-tested-with:         GHC ==8.6.4 || ==8.4.4 || ==8.4.1
+tested-with:         GHC ==8.6.4 || ==8.6.3 || ==8.4.4 || ==8.4.1
 license:             BSD3
 license-file:        LICENSE
 author:              Max Magorsch
