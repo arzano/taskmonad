@@ -83,13 +83,12 @@
 
       <p style="font-family: Georgia, serif; font-size: 17px;margin-top:17px;">Release v1.0.0. (<a class="reference internal" href="src/TaskMonad.html"><span class=" std std-ref">Source</span></a>)</p>
 
-      <a class="reference" href="https://pypi.org/project/requests/"><img alt="https://img.shields.io/pypi/l/requests.svg" src="https://img.shields.io/badge/license-BSD-lightgrey.svg"></a>
+<a href="https://www.haskell.org/ghc/" ><img src="https://img.shields.io/badge/ghc-8.4.1%2B-blue.svg"></a>
+<a href="https://travis-ci.org/mmagorsc/taskmonad"> <img src="https://api.travis-ci.org/mmagorsc/taskmonad.svg?branch=master"></a>
+<a href="http://hackage.haskell.org/package/TaskMonad-1.0.0"> <img src="https://img.shields.io/badge/hackage-1.0.0-brightgreen.svg"></a>
+<a href="https://codeclimate.com/github/mmagorsc/taskmonad"> <img src="https://api.codeclimate.com/v1/badges/e4de6996bf5bb710d0e7/maintainability"></a>
+<a href="https://opensource.org/licenses/BSD-3-Clause"><img src="https://img.shields.io/badge/license-BSD-blue.svg"></a>
 
-            <a class="reference" href="https://pypi.org/project/requests/"><img alt="https://img.shields.io/pypi/l/requests.svg" src="https://img.shields.io/badge/build-passing-brightgreen.svg"></a>
-
-            <a class="reference" href="https://pypi.org/project/requests/"><img alt="https://img.shields.io/pypi/l/requests.svg" src="https://img.shields.io/badge/hackage-v1.0.0-brightgreen.svg"></a>
-
-           <a href="https://codeclimate.com/github/mmagorsc/taskmonad/maintainability"><img src="https://api.codeclimate.com/v1/badges/e4de6996bf5bb710d0e7/maintainability" /></a>
 
       <p style="margin-top:30px; margin-bottom:17px; font-family: Georgia, serif;font-size: 17px;color: #3E4349;"><b>TaskMonad</b> is a collection of tools which can be used to access taskwarrior from xmonad.</p>
 
@@ -99,8 +98,14 @@
 </video> 
 
 
-<div id="content"><div id="synopsis"><details id="syn"><summary>Synopsis</summary><ul class="details-toggle" data-details-id="syn"><li class="src short"><a href="#v:taskwarriorPrompt">taskwarriorPrompt</a> :: [(String -&gt; Bool, X ())] -&gt; X ()</li><li class="src short"><a href="#v:processInbox">processInbox</a> :: X ()</li><li class="src short"><a href="#v:togglePriority">togglePriority</a> :: String -&gt; X ()</li><li class="src short"><a href="#v:taskSelect">taskSelect</a> :: String -&gt; X ()</li><li class="src short"><a href="#v:dueSelect">dueSelect</a> :: X ()</li><li class="src short"><a href="#v:tagSelect">tagSelect</a> :: X ()</li><li class="src short"><a href="#v:projectSelect">projectSelect</a> :: X ()</li><li class="src short"><a href="#v:taskwarriorScratchpads">taskwarriorScratchpads</a> :: [NamedScratchpad]</li><li class="src short"><a href="#v:taskwarriorScratchpad">taskwarriorScratchpad</a> :: X ()</li></ul></details></div><h1>Usage</h1></a><div class="doc"><p>To install Taskmonad just copy the source code into your <code>~/.xmonad/lib/</code> folder.
- The folder structure should afterwards look like this:</p><pre>.xmonad 
+<div id="content"><div id="synopsis"><details id="syn"><summary>Synopsis</summary><ul class="details-toggle" data-details-id="syn"><li class="src short"><a href="#v:taskwarriorPrompt">taskwarriorPrompt</a> :: [(String -&gt; Bool, X ())] -&gt; X ()</li><li class="src short"><a href="#v:processInbox">processInbox</a> :: X ()</li><li class="src short"><a href="#v:togglePriority">togglePriority</a> :: String -&gt; X ()</li><li class="src short"><a href="#v:taskSelect">taskSelect</a> :: String -&gt; X ()</li><li class="src short"><a href="#v:dueSelect">dueSelect</a> :: X ()</li><li class="src short"><a href="#v:tagSelect">tagSelect</a> :: X ()</li><li class="src short"><a href="#v:projectSelect">projectSelect</a> :: X ()</li><li class="src short"><a href="#v:taskwarriorScratchpads">taskwarriorScratchpads</a> :: [NamedScratchpad]</li><li class="src short"><a href="#v:taskwarriorScratchpad">taskwarriorScratchpad</a> :: X ()</li></ul></details></div>
+
+  <a href="#g:1" id="g:1"><h1>Installation</h1></a>
+  <a href="#g:2" id="g:2"><h2>Install with Cabal</h2></a>
+  <div class="doc"><p>To install TaskMonad from hackage just execute:</p>
+    <pre>$ cabal update <br>$ cabal install TaskMonad</pre><p>Afterwards import TaskMonad in your `xmonad.hs`  </p><pre>import TaskMonad</pre></div>
+  <a href="#g:3" id="g:3"><h2>Install without Cabal</h2></a>
+  <div class="doc"><p>To install Taskmonad without using cabal just download and copy the source code into your `~<em>.xmonad</em>-- lib/` folder. The folder structure should afterwards look like this:</p><pre>.xmonad 
 |-- lib
 |   |-- Taskmonad.hs
 |   |-- Taskmonad
@@ -111,7 +116,12 @@
 |   |-- GridSelect
 |   |   `-- Extras.hs
 |   `-- ...
-|-- xmonad.hs</pre><p>Afterwards import TaskMonad and add a manage hook for the taskwarrior scratchpad:</p><pre>import TaskMonad
+|-- xmonad.hs</pre><p>Afterwards import TaskMonad in your `xmonad.hs`  </p><pre>import TaskMonad</pre></div>
+  
+
+  <h1>Usage</h1></a>
+
+<div class="doc"><p>To get started, add a manage hook for the taskwarrior scratchpad:</p><pre>import TaskMonad
 
 -- ...
 
@@ -119,7 +129,7 @@
 
 ... , ("M-C-p",   taskSelect "status:pending") -- Displays all pending tasks
 
-    ... , ("M-C-S-p", tagSelect)                   -- Displays all tags using a gridselect</pre><p>In general you can customize the tools ad libitum. A good way to get started is to implement custom actions for the taskwarrior prompt. Please refer to <code><a href="TaskMonad.html#v:taskwarriorPrompt" title="TaskMonad">taskwarriorPrompt</a></code> for further information.  </p></div><a href="#g:2" id="g:2"><h1>Step 1: Capture</h1></a><div class="doc"><p>You can easily capture tasks, ideas or notes using the <code><a href="TaskMonad.html#v:taskwarriorPrompt" title="TaskMonad">taskwarriorPrompt</a></code> like this:</p><p>
+... , ("M-C-S-p", tagSelect)                   -- Displays all tags</pre><p>In general you can customize the tools ad libitum. A good way to get started is to implement custom actions for the taskwarrior prompt. Please refer to <code><a href="TaskMonad.html#v:taskwarriorPrompt" title="TaskMonad">taskwarriorPrompt</a></code> for further information.  </p></div><a href="#g:2" id="g:2"><h1>Step 1: Capture</h1></a><div class="doc"><p>You can easily capture tasks, ideas or notes using the <code><a href="TaskMonad.html#v:taskwarriorPrompt" title="TaskMonad">taskwarriorPrompt</a></code> like this:</p><p>
 
     <a href="images/capture.png" data-lightbox="example-1">
       <img style="width:100%" src="images/capture.png" alt="Capture">

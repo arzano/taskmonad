@@ -8,6 +8,7 @@
 <a href="https://codeclimate.com/github/mmagorsc/taskmonad"> <img src="https://api.codeclimate.com/v1/badges/e4de6996bf5bb710d0e7/maintainability"></a>
 <a href="#contributing"> <img src="https://img.shields.io/badge/contributions-welcome-orange.svg"></a>
 <a href="https://opensource.org/licenses/BSD-3-Clause"><img src="https://img.shields.io/badge/license-BSD-blue.svg"></a>
+</p>
 
 ## Table Of Contents 
 

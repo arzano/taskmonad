@@ -18,6 +18,14 @@
 
 module TaskMonad
   (
+       -- * Installation
+
+       -- ** Install with Cabal
+       -- $installWithCabal
+
+       -- ** Install without Cabal
+       -- $installWithoutCabal
+    
        -- * Usage
        -- $usage
     
@@ -80,10 +88,26 @@ import           TaskMonad.ScratchPad
 import           TaskMonad.Utils
 import           TaskMonad.GridSelect
 
--- $usage
--- To install Taskmonad just copy the source code into your @~/.xmonad/lib/@ folder.
--- The folder structure should afterwards look like this:
---
+
+
+
+-- $installWithCabal
+-- 
+-- To install TaskMonad from hackage just execute:
+-- 
+-- > cabal update
+-- > cabal install TaskMonad
+-- 
+-- Afterwards import TaskMonad in your `xmonad.hs`  
+-- 
+-- > import TaskMonad
+-- 
+
+-- $installWithoutCabal
+-- 
+-- To install Taskmonad without using cabal just download and copy the source code into your `~/.xmonad/-- lib/` folder. The folder structure should afterwards look like this:
+-- 
+-- 
 -- > .xmonad 
 -- > |-- lib
 -- > |   |-- Taskmonad.hs
@@ -96,8 +120,16 @@ import           TaskMonad.GridSelect
 -- > |   |   `-- Extras.hs
 -- > |   `-- ...
 -- > |-- xmonad.hs
---
--- Afterwards import TaskMonad and add a manage hook for the taskwarrior scratchpad:
+-- 
+-- 
+-- Afterwards import TaskMonad in your `xmonad.hs`  
+-- 
+-- > import TaskMonad
+-- 
+
+
+-- $usage
+-- To get started, add a manage hook for the taskwarrior scratchpad:
 --
 -- > import TaskMonad
 -- > 
