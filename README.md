@@ -4,6 +4,7 @@
 <p align="center">
 <a href="https://www.haskell.org/ghc/" ><img src="https://img.shields.io/badge/ghc-8.4.1%2B-blue.svg"></a>
 <a href="https://travis-ci.org/mmagorsc/taskmonad"> <img src="https://api.travis-ci.org/mmagorsc/taskmonad.svg?branch=master"></a>
+<a href="http://hackage.haskell.org/package/TaskMonad-1.0.0"> <img src="https://img.shields.io/badge/hackage-1.0.0-brightgreen.svg"></a>
 <a href="https://codeclimate.com/github/mmagorsc/taskmonad"> <img src="https://api.codeclimate.com/v1/badges/e4de6996bf5bb710d0e7/maintainability"></a>
 <a href="#contributing"> <img src="https://img.shields.io/badge/contributions-welcome-orange.svg"></a>
 <a href="https://opensource.org/licenses/BSD-3-Clause"><img src="https://img.shields.io/badge/license-BSD-blue.svg"></a>
@@ -25,7 +26,24 @@ Basically, TaskMonad provides a collection of tools which can be used to access 
 
 ## Installation
 
-To install Taskmonad just copy the source code into your `~/.xmonad/lib/` folder. The folder structure should afterwards look like this:
+### Using cabal
+
+To install TaskMonad from hackage just execute:
+
+``` shell
+$ cabal update
+$ cabal install TaskMonad
+```
+
+Afterwards import TaskMonad in your `xmonad.hs`  
+
+``` haskell
+import TaskMonad
+```
+
+### Without cabal
+
+To install Taskmonad without using cabal just download and copy the source code into your `~/.xmonad/lib/` folder. The folder structure should afterwards look like this:
 
 ``` shell
 .xmonad 
@@ -47,6 +65,7 @@ Afterwards import TaskMonad in your `xmonad.hs`
 ``` haskell
 import TaskMonad
 ```
+
 
 ## Usage
 To get started, add a manage hook for the taskwarrior scratchpad:
