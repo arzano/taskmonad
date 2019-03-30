@@ -15,7 +15,8 @@ maintainer:          max@magorsch.de
 -- copyright:
 category:            XMonad
 build-type:          Simple
-extra-source-files:  ChangeLog.md
+extra-source-files:  README.md
+                     ChangeLog.md
 cabal-version:       >=1.10
 
 
